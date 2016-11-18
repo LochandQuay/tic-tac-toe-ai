@@ -1,6 +1,4 @@
 require_relative 'tic_tac_toe'
-require 'byebug'
-
 
 class TicTacToeNode
   attr_reader :board, :next_mover_mark, :prev_move_pos, :children
@@ -45,7 +43,8 @@ class TicTacToeNode
           board_dup = @board.dup
           board_dup.rows[i][j] = @next_mover_mark
           next_mark = (@next_mover_mark == :x ? :o : :x)
-          child = TicTacToeNode.new(board_dup, next_mark, [i, j])
+          prev_move = [i, j]
+          child = TicTacToeNode.new(board_dup, next_mark, prev_move)
           children << child
         end
       end
